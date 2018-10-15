@@ -2,9 +2,10 @@
 
 module Main (main) where
 
-import Control.Applicative ((<|>))
-import Snap.Core (ifTop, route, writeText)
+import Snap.Core (ifTop)
 import Snap.Http.Server (quickHttpServe)
+import Snap.Util.FileServe (serveFile)
 
 main :: IO ()
-main = putStrLn "Hello world!"
+main = quickHttpServe $
+    ifTop (serveFile "views/index.html")
